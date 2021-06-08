@@ -18,6 +18,7 @@ export const Album = styled.div`
     justify-content: space-between;
     align-content: center;
     text-align: center;
+    overflow: hidden;
 
     & .thumbnail {
         display: grid;

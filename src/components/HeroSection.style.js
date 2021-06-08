@@ -21,23 +21,50 @@ export const Hero = styled.div`
         z-index: 0;
     }
 
-    & #search-input {
-        width: 45%;
-        height: 2.8em;
-        outline: none;
-        border: none;
-        background-color: #E2DDEE;
-        padding: 1em;
-        border-radius: .6em;
+    & .input-container {
         position: relative;
-        z-index: 2;
-        top: 10em;
-        color: #260E55;
-        opacity: .85;
-    }
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    & #search-input::placeholder {
-        color: #7F65B0;
+        & #search-input {
+            width: 45%;
+            height: 2.8em;
+            outline: none;
+            border: none;
+            background-color: #E2DDEE;
+            padding: 1em;
+            border-radius: .6em;
+            position: relative;
+            z-index: 2;
+            top: 10em;
+            color: #260E55;
+            opacity: .85;
+        }
+
+        & #search-input::placeholder {
+            color: #7F65B0;
+        }
+
+        & .options-container {
+            width: 45%;
+            height: 200px;
+            overflow-y: scroll;
+            overflow-x: scroll;
+            background-color: #ffffff;
+            position: absolute;
+            top: 480%;
+
+            & .options {
+                padding: .4em 1.5em;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #ECEAF1;
+                }
+            }
+        }
     }
 
 

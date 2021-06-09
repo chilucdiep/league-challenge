@@ -10,6 +10,10 @@ export const Photo = styled.div`
         margin: 2em 0;
     }
 
+    & h3 {
+        margin: 15em 0 0;
+    }
+
     & img {
         width: 50%;
         margin-bottom: 5em;

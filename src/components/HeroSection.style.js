@@ -48,16 +48,19 @@ export const Hero = styled.div`
         }
 
         & .options-container {
-            width: 45%;
-            height: 200px;
+            max-width: 45%;
+            block-size: fit-content;
+            max-height: 200px;
             overflow-y: scroll;
-            overflow-x: scroll;
             background-color: #ffffff;
+            box-shadow: 0 30px 30px rgba(0,0,0,0.15), 0 20px 20px rgba(0,0,0,0.1);
+            border-radius: .6em;
             position: absolute;
             top: 480%;
+            padding: .5em 1.5em;
 
             & .options {
-                padding: .4em 1.5em;
+                padding: .4em 0;
 
                 &:hover {
                     cursor: pointer;

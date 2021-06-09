@@ -11,31 +11,29 @@ function App() {
   const [photoArray, setPhotoArray] = React.useState([])
   const [searchInput, setSearchInput] = React.useState('')
 
-
-  const getRequestAlbum = async() => {
+  const getRequestAlbum = async () => {
     const urlAlbum = `https://jsonplaceholder.typicode.com/users/1/albums`
     const responseAlbum = await fetch(urlAlbum)
     const responseJsonAlbum = await responseAlbum.json()
     setAlbums(responseJsonAlbum)
   }
 
-
   React.useEffect(() => {
-      getRequestAlbum()
+    getRequestAlbum()
   }, [])
 
   React.useEffect(() => {
-    if(albums.length === 0) return;
+    if (albums.length === 0) return;
 
     (async function () {
-      let map = [] 
+      let map = []
       let photos = []
-      await Promise.all(albums.map(async(album) => { 
+      await Promise.all(albums.map(async (album) => {
         var albumId = album.id
         const urlPhoto = `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`
         const responsePhoto = await fetch(urlPhoto)
         const responseJsonPhoto = await responsePhoto.json()
-        map = {...map, [albumId]: responseJsonPhoto};
+        map = { ...map, [albumId]: responseJsonPhoto };
         photos = [...photos, ...responseJsonPhoto]
       }))
       setPhotosMap(map);
@@ -45,30 +43,25 @@ function App() {
 
   const PhotoSearched = photoArray.find(photo => photo.title === searchInput)
 
-
-  const albumListMarkup = albums.map(album => 
+  const albumListMarkup = albums.map(album =>
     <Album key={album.id}>
-      <PhotoList title={album.title} photos={photosMap[album.id]}/>
+      <PhotoList title={album.title} photos={photosMap[album.id]} />
     </Album>
   )
 
-  if (searchInput === "") {
-    return (
-      <>
-        <HeroSection searchInput={searchInput} setSearchInput={setSearchInput} photoArray={photoArray} />
-        <AlbumGrid>
-          {albumListMarkup}
-        </AlbumGrid>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <HeroSection setSearchInput={setSearchInput} />
-        <PhotosSearched photoSearched={PhotoSearched} />
-      </>
-    )
-  }
+  const searchedMarkup = searchInput ?
+    <PhotosSearched photoSearched={PhotoSearched} />
+    : <AlbumGrid>
+      {albumListMarkup}
+     </AlbumGrid>
+
+  
+  return (
+    <>
+      <HeroSection searchInput={searchInput} setSearchInput={setSearchInput} photoArray={photoArray} />
+      {searchedMarkup}
+    </>
+  )
 }
 
 export default App;

@@ -5,7 +5,7 @@ const PhotosSearched = ({photoSearched}) => {
 
     return (
         <Photo>
-            {photoSearched?.title==="" ? <h2>Photo not found</h2> : <h2>{photoSearched?.title}</h2>}
+            {photoSearched?.title ? <h2>{photoSearched?.title}</h2> : <h3>Photo not found</h3>}
             <img src={photoSearched?.url}></img>
         </Photo>
     )
